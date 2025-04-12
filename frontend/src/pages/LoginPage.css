@@ -1,0 +1,167 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('https://res.cloudinary.com/duy8dombh/image/upload/v1744423055/go5ulihpnko81_gfmp1u.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 400px;
+  background-color: rgb(116, 166, 152, 0.5);
+  padding: 2rem;
+  position: relative;
+  box-shadow: 0px 5px black, 0px -5px black, 5px 0px black, -5px 0px black, 
+              0px 10px #00000038, 5px 5px #00000038, -5px 5px #00000038, 
+              inset 0px 5px #ffffff1f, inset 0px -5px #00000030;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-form form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-form h1 {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  font-family: "Press Start 2P", system-ui;
+  font-size: 24px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #fff;
+  font-family: "Press Start 2P", system-ui;
+  font-size: 14px;
+  align-self: flex-start;
+  margin-left: 5%;
+}
+
+.form-group input {
+  width: 90%;
+  padding: 0.75rem;
+  border: 3px solid black;
+  background: #fff;
+  font-size: 14px;
+  color: #2e2e2e;
+}
+
+.error-message {
+  color: #fff;
+  font-family: "Press Start 2P", system-ui;
+  font-size: 12px;
+  margin-bottom: 1rem;
+  text-align: center;
+  width: 90%;
+  padding: 8px;
+  background-color: rgba(255, 51, 51, 0.5);
+  border: 2px solid #ff3333;
+}
+
+/* Common button styles */
+.login-button,
+.social-button {
+  color: #fff;
+  background-color: #6abc3a;
+  padding: 15px 40px;
+  margin: 10px 0;
+  font-size: 14px;
+  border: 0;
+  box-shadow: 0px 5px black, 
+              0px -5px black, 
+              5px 0px black, 
+              -5px 0px black, 
+              0px 10px #00000038, 
+              5px 5px #00000038, 
+              -5px 5px #00000038, 
+              inset 0px 5px #ffffff36;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-button:active,
+.social-button:active {
+  transform: translateY(5px);
+  box-shadow: 0px 5px black, 
+              0px -5px black, 
+              5px 0px black, 
+              -5px 0px black,
+              inset 0px 5px #00000038;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.5rem 0;
+  width: 90%;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 3px solid #fff;
+}
+
+.divider span {
+  padding: 0 1rem;
+  color: #fff;
+  font-size: 14px;
+  font-family: "Press Start 2P", system-ui;
+}
+
+.social-login {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  align-items: center;
+}
+
+.google-button {
+  background-color: #ffffff;
+  color: #2e2e2e;
+}
+
+.facebook-button {
+  background-color: #1877f2;
+}
+
+/* Container for button content */
+.social-button span {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+/* Adjust icon sizes */
+.social-button svg {
+  width: 20px;
+  height: 20px;
+} 

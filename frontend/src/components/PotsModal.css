@@ -1,0 +1,109 @@
+/* PotsModal.css */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top of other elements */
+  }
+  
+  .modal-content {
+    background-color: rgb(116, 166, 152, 0.8);
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0px 5px black, 
+                0px -5px black, 
+                5px 0px black, 
+                -5px 0px black, 
+                0px 10px #00000038, 
+                5px 5px #00000038, 
+                -5px 5px #00000038, 
+                inset 0px 5px #ffffff1f, 
+                inset 0px -5px #00000030;
+  }
+  
+  .modal-title {
+    color: #fff;
+    font-family: "Press Start 2P", system-ui;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+  
+  .pots-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .pot-item {
+    background-color: #6abc3a;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0px 3px black, 
+                0px -3px black, 
+                3px 0px black, 
+                -3px 0px black, 
+                inset 0px 3px #ffffff1f;
+    transition: transform 0.1s, box-shadow 0.1s;
+  }
+  
+  .pot-item:hover {
+    transform: translateY(-2px);
+  }
+  
+  .pot-item:active {
+    transform: translateY(2px);
+  }
+  
+  .pot-name {
+    color: #fff;
+    font-family: "Press Start 2P", system-ui;
+    font-size: 12px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .pot-price {
+    color: #fff;
+    font-family: "Press Start 2P", system-ui;
+    font-size: 10px;
+  }
+  
+  .close-button {
+    position: absolute;
+    width: 2vw;
+    top: 32vh;
+    right: 32vw;
+    padding: 0.2rem;
+    background-color: red;
+    border: none;
+    color: #fff;
+    font-family: "Press Start 2P", system-ui;
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: 0px 3px black, 
+                0px -3px black, 
+                3px 0px black, 
+                -3px 0px black, 
+                inset 0px 3px #ffffff1f;
+    transition: transform 0.1s, box-shadow 0.1s;
+  }
+  
+  .close-button:active {
+    transform: translateY(3px);
+    box-shadow: 0px 3px black, 
+                0px -3px black, 
+                3px 0px black, 
+                -3px 0px black,
+                inset 0px 3px #00000038;
+  }
+  

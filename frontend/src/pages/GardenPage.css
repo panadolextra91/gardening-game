@@ -1,0 +1,146 @@
+.garden-container {
+  min-height: 100vh;
+  background-image: url('https://res.cloudinary.com/duy8dombh/image/upload/v1744421324/bg_ylskn9.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.garden-header {
+  background-color: rgb(116, 166, 152, 0.8);
+  text-shadow: 0px 0px 10px #000000;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-radius: 0;
+  margin: auto auto 0 auto; /* Center the header and add bottom margin */
+  width: 50%; /* Adjust this value to make the header narrower or wider */
+  box-shadow: 0px 5px black, 
+              0px -5px black, 
+              5px 0px black, 
+              -5px 0px black, 
+              0px 10px #00000038, 
+              5px 5px #00000038, 
+              -5px 5px #00000038, 
+              inset 0px 5px #ffffff1f, 
+              inset 0px -5px #00000030;
+}
+
+.garden-header h1 {
+  text-align: center;
+  color: #fff;
+  margin: 0 0 0 0;
+  font-family: "Press Start 2P", system-ui;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.garden-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -14vh;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.stat-value {
+  color: #fff;
+  text-shadow: 0px 0px 10px #000000;
+  font-family: "Press Start 2P", system-ui;
+  font-size: 16px;
+}
+
+.garden-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 55vh auto 0 auto;
+  padding: 2rem;
+}
+
+.garden-plot {
+  aspect-ratio: 1;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.garden-plot:hover {
+    cursor: pointer;
+}
+
+.plot-button {
+    opacity: 0;
+  pointer-events: none; /* Prevents hover/click events when hidden */
+  transition: opacity 0.1s ease-in-out;
+    margin-top: 9vh;
+  width: 80%;
+  height: 30px;
+  background-color: #6abc3a;
+  border: 0;
+  color: #fff;
+  font-family: "Press Start 2P", system-ui;
+  font-size: 10px;
+  cursor: pointer;
+  box-shadow: 0px 5px black, 
+              0px -5px black, 
+              5px 0px black, 
+              -5px 0px black, 
+              0px 10px #00000038, 
+              5px 5px #00000038, 
+              -5px 5px #00000038, 
+              inset 0px 5px #ffffff36;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.garden-plot:hover .plot-button,
+.plot-button:hover {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.plot-button:active {
+  transform: translateY(5px);
+  box-shadow: 0px 5px black, 
+              0px -5px black, 
+              5px 0px black, 
+              -5px 0px black,
+              inset 0px 5px #00000038;
+}
+
+.stat-icon {
+  width: 70px;
+  height: 70px;
+}
+
+@media (max-width: 768px) {
+  .garden-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1rem;
+  }
+
+  .garden-header h1 {
+    font-size: 20px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+  }
+
+  .stat-value {
+    font-size: 14px;
+  }
+}
