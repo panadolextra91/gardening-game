@@ -1,0 +1,179 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+///
+/// USER & AUTHENTICATION
+///
+
+model User {
+  id          Int      @id @default(autoincrement())
+  email       String?  @unique
+  password    String?  
+  facebookId  String?  @unique
+  googleId    String?  @unique
+  guest       Boolean  @default(false)
+  
+  coins       Int      @default(500)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  gardens     Garden[]
+  inventory   Inventory?
+}
+
+///
+/// GARDEN & RELATED MODELS
+///
+
+model Garden {
+  id           Int      @id @default(autoincrement())
+  // Represent which number garden this is (1, 2, or 3)
+  gardenNumber Int      
+  // Background image/asset name; first garden has a default value and others can be chosen
+  background   String
+  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  // Relation: a Garden belongs to one User
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+  
+  // A Garden can have up to 16 Pots
+  pots   Pot[]
+}
+
+model Pot {
+  id         Int      @id @default(autoincrement())
+  // Position on the garden background (e.g., slot index 1 to 16)
+  position   Int
+  
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  // Relation: the Pot belongs to one Garden
+  garden   Garden @relation(fields: [gardenId], references: [id])
+  gardenId Int
+  
+  // Each Pot has a fixed PotType (e.g., different designs with different prices)
+  potType   PotType @relation(fields: [potTypeId], references: [id])
+  potTypeId Int
+  
+  // Optional: store the price paid for this Pot at purchase time
+  purchasePrice Int?
+  
+  // One pot can have at most one Plant (or be empty)
+  plant Plant?
+}
+
+///
+/// PLANTS & TYPES
+///
+
+/// Enumerate the possible growth states for a Plant instance.
+enum PlantGrowthState {
+  SEED
+  SPROUT
+  YOUNG
+  ADULT
+  DEAD
+}
+
+model Plant {
+  id               Int              @id @default(autoincrement())
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  // The Plant is of a specific type (defines images, pricing, and growth requirements)
+  plantType   PlantType @relation(fields: [plantTypeId], references: [id])
+  plantTypeId Int
+  
+  // The Pot where this Plant is raised (one-to-one relation)
+  pot    Pot @relation(fields: [potId], references: [id])
+  potId  Int @unique
+
+  // Current growth state of the plant
+  growthState PlantGrowthState @default(SEED)
+  
+  // Count of water sessions applied during the current stage.
+  currentWaterCount Int @default(0)
+  
+  // Total accumulated sunbath time (in minutes)
+  accumulatedSunMin Int @default(0)
+  
+  // Purchase price for this plant – may be used to calculate the selling price later.
+  purchasePrice Int
+
+  // Harvest flag (if already harvested)
+  harvested Boolean @default(false)
+}
+
+
+model PlantType {
+  id             Int      @id @default(autoincrement())
+  name           String
+  basePrice      Int      // Purchase price for this plant type
+  
+  // Durations (e.g., in minutes) to transition between growth states:
+  // seed -> sprout, sprout -> young, and young -> adult.
+  seedToSproutDuration  Int
+  sproutToYoungDuration Int
+  youngToAdultDuration  Int
+  
+  // Watering requirements (for stages beyond seed, which is constant at 4 for all)
+  sproutWaterReq Int
+  youngWaterReq  Int
+  
+  // Total required sunbath time (in minutes) across the plant's lifespan.
+  totalSunlightReq Int
+  
+  // Images to represent the plant at different growth stages.
+  imageSeed    String
+  imageSprout  String
+  imageYoung   String
+  imageAdult   String
+  
+  // Relation: One PlantType can be used for many Plants.
+  plants       Plant[]
+}
+
+///
+/// POT TYPES
+///
+
+model PotType {
+  id     Int    @id @default(autoincrement())
+  name   String
+  image  String
+  price  Int   // Price for this type of pot
+  
+  // Relation: one PotType can be applied to many Pots.
+  pots   Pot[]
+}
+
+///
+/// INVENTORY
+///
+
+model Inventory {
+  id         Int   @id @default(autoincrement())
+  
+  // Each Inventory belongs to a unique User
+  user   User @relation(fields: [userId], references: [id])
+  userId Int  @unique
+
+  // Number of inventory items available to the user
+  water      Int @default(0)
+  fertilizer Int @default(0)
+  sunlight   Int @default(0)
+}
